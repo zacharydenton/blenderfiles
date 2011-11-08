@@ -31,6 +31,9 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 gem 'acts-as-taggable-on', '~>2.1.0'
+gem 'devise'
+gem 'ajaxful_rating', :git => 'git://github.com/edgarjs/ajaxful-rating.git', :branch => "rails3"
+gem "paperclip", "~> 2.4.5"
 
 group :test do
   # Pretty printed test output
