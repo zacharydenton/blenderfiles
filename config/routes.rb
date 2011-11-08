@@ -1,7 +1,11 @@
 Blenderfiles::Application.routes.draw do
   devise_for :users
 
-  resources :materials
+  resources :materials do
+    member do
+      post :rate
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

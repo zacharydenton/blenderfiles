@@ -6,18 +6,23 @@
 </p>
 
 <p>
+  <b>Rating:</b>
+  <%= ratings_for @material %>
+</p>
+
+<p>
   <b>Description:</b>
   <%= @material.description %>
 </p>
 
 <p>
   <b>Image:</b>
-  <%= @material.image %>
+  <%= image_tag @material.image.url(:medium) %>
 </p>
 
 <p>
-  <b>Blend:</b>
-  <%= @material.blend %>
+  <b>Download:</b>
+  <%= link_to @material.blend %>
 </p>
 
 <%= link_to 'Edit', edit_material_path(@material) %> |

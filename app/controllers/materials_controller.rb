@@ -69,6 +69,15 @@ class MaterialsController < ApplicationController
     end
   end
 
+  def rate
+    @material = Material.find(params[:id])
+    @material.rate(params[:stars], current_user, params[:dimension])
+    render :update do |page|
+      page.replace_html @material.wrapper_dom_id(params), ratings_for(@material, params.merge(:wrap => false))
+      page.visual_effect :highlight, @car.wrapper_dom_id(params)
+    end
+  end
+
   # DELETE /materials/1
   # DELETE /materials/1.json
   def destroy

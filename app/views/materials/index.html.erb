@@ -2,8 +2,10 @@
 
 <table>
   <tr>
+    <th>Thumbnail</th>
     <th>Title</th>
-    <th>Description</th>
+    <th>Rating</th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,10 +13,10 @@
 
 <% @materials.each do |material| %>
   <tr>
+    <td><%= image_tag material.image.url(:thumb) %></td>
     <td><%= material.title %></td>
-    <td><%= material.description %></td>
-    <td><%= material.image %></td>
-    <td><%= material.blend %></td>
+    <td><%= ratings_for material %></td>
+    <td><%= link_to 'Download', material.blend.url %></td>
     <td><%= link_to 'Show', material %></td>
     <td><%= link_to 'Edit', edit_material_path(material) %></td>
     <td><%= link_to 'Destroy', material, confirm: 'Are you sure?', method: :delete %></td>
