@@ -12,7 +12,7 @@
 
 <p>
   <b>Description:</b>
-  <%= @material.description %>
+  <%= @material.description.html_safe %>
 </p>
 
 <p>
@@ -22,7 +22,7 @@
 
 <p>
   <b>Download:</b>
-  <%= link_to @material.blend %>
+  <%= link_to File.basename(@material.blend.path), @material.blend.url %>
 </p>
 
 <%= link_to 'Edit', edit_material_path(@material) %> |

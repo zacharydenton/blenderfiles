@@ -67,9 +67,12 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mechanize (1.0.0)
+      nokogiri (>= 1.2.1)
     mime-types (1.17.2)
     minitest (2.7.0)
     multi_json (1.0.3)
+    nokogiri (1.4.4)
     orm_adapter (0.0.5)
     paperclip (2.4.5)
       activerecord (>= 2.3.0)
@@ -139,7 +142,9 @@ DEPENDENCIES
   coffee-rails (~> 3.1.1)
   devise
   jquery-rails
+  mechanize
   minitest
+  nokogiri
   paperclip (~> 2.4.5)
   rails (= 3.1.1)
   sass-rails (~> 3.1.4)
