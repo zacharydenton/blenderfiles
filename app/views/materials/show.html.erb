@@ -1,29 +1,24 @@
-<p id="notice"><%= notice %></p>
+<div class="content">
+  <div class="page-header">
+    <h1>
+      <%= @material.title %>
+      <%= ratings_for @material %>
+    </h1>
+  </div>
+  <div class="row">
+    <div class="span10">
+      <%= image_tag @material.image.url(:medium) %>
+      <p>
+      <%= @material.description.html_safe %>
+      </p>
+    </div>
+    <div class="span4">
+      <a href="<%= @material.blend.url %>" class="btn large primary">Download</a>
+      <h3>Tags:</h3>
+      <% @material.tag_list.each do |tag| %>
+        <span class="label"><%= tag %></span>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<p>
-  <b>Title:</b>
-  <%= @material.title %>
-</p>
-
-<p>
-  <b>Rating:</b>
-  <%= ratings_for @material %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @material.description.html_safe %>
-</p>
-
-<p>
-  <b>Image:</b>
-  <%= image_tag @material.image.url(:medium) %>
-</p>
-
-<p>
-  <b>Download:</b>
-  <%= link_to File.basename(@material.blend.path), @material.blend.url %>
-</p>
-
-<%= link_to 'Edit', edit_material_path(@material) %> |
-<%= link_to 'Back', materials_path %>

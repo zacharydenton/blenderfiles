@@ -1,29 +1,12 @@
-<h1>Listing materials</h1>
 
-<table>
-  <tr>
-    <th>Thumbnail</th>
-    <th>Title</th>
-    <th>Rating</th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @materials.each do |material| %>
-  <tr>
-    <td><%= image_tag material.image.url(:thumb) %></td>
-    <td><%= material.title %></td>
-    <td><%= ratings_for material %></td>
-    <td><%= link_to 'Download', material.blend.url %></td>
-    <td><%= link_to 'Show', material %></td>
-    <td><%= link_to 'Edit', edit_material_path(material) %></td>
-    <td><%= link_to 'Destroy', material, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+<% @materials.each_with_index do |material, index| %>
+  <% if (index % 7) == 0 %>
+    <div class="row">
+  <% end %>
+  <div class="span2">
+    <p><%= link_to image_tag(material.image.url(:thumb)), material %></p>
+  </div>
+  <% if (index % 7) == 6 %>
+    </div>
+  <% end %>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Material', new_material_path %>

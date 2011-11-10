@@ -53,9 +53,6 @@ class String
   end
 end
 
-$index_url = 'http://matrep.parastudios.de/index.php?p=7'
-agent = Mechanize.new
-
 def get_material(agent, material_url)
   page = agent.get(material_url)
 
@@ -108,6 +105,8 @@ def get_category(agent, category_url)
 end
 
 task :getmaterials => :environment do
+  $index_url = 'http://matrep.parastudios.de/index.php?p=7'
+  agent = Mechanize.new
   index = agent.get($index_url)
   index.parser.xpath('/html/body/div[2]/div[2]/div/ul/li/div/a').each do |link|
     get_category(agent, link['href'])
