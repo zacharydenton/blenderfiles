@@ -51,7 +51,9 @@ SimpleNavigation::Configuration.run do |navigation|
     #
     primary.item :home, 'Home', root_url
     primary.item :materials, 'Materials', url_for(:controller => "/materials", :action => "index")
-    primary.item :sign_up, 'Register', new_user_registration_path 
+    primary.item :sign_in, 'Sign in', new_user_session_path, :unless => Proc.new { user_signed_in? }
+    primary.item :sign_up, 'Register', new_user_registration_path, :unless => Proc.new { user_signed_in? }
+    primary.item :sign_out, 'Sign out', destroy_user_session_path, :method => :delete, :if => Proc.new { user_signed_in? }
 
     # you can also specify a css id or class to attach to this particular level
     # works for all levels of the menu

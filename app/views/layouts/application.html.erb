@@ -6,7 +6,6 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "application" %>
     <%= ajaxful_rating_style %>
@@ -28,6 +27,14 @@
     </div>
 
     <div class="container">
+      <%- flash.each do |name, msg| -%>
+        <% if msg.is_a?(String) %>
+          <div class="alert-message <%= name %>">
+            <a class="close" href="#">×</a>
+            <p><%= msg %></p>
+          </div>
+        <% end %>
+      <%- end -%>
       <%= yield %>
     </div>
 

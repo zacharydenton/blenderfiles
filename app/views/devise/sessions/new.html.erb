@@ -1,0 +1,25 @@
+<div class="content">
+  <div class="page-header">
+    <h1>Sign in</h1>
+  </div>
+  <ul class="breadcrumb">
+    <li><a href="/">Home</a> <span class="divider">/</span></li>
+    <li class="active">Sign in</li>
+  </ul>
+
+  <div class="span16">
+    <%= twitter_bootstrap_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <%= f.inputs 'Sign in' do %>
+        <%= f.email_field :email, :placeholder => 'me@example.com' %>
+        <%= f.password_field :password do %>
+          <%= link_to 'Forgot?', new_user_password_path %>
+        <% end %>
+      <% end %>
+      <%= f.actions do %>
+        <%= f.submit "Sign in" %>
+        <%= button_tag  'Cancel', :type => 'reset', :class => 'btn' %>
+        <%= link_to 'or sign up', new_user_registration_path %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

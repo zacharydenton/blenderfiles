@@ -38,6 +38,8 @@ gem 'mechanize'
 gem 'nokogiri'
 gem 'will_paginate'
 gem "simple-navigation"
+gem 'twitter-bootstrap-rails'
+gem 'twitter_bootstrap_form_for'
 
 group :test do
   # Pretty printed test output
