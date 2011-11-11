@@ -2,7 +2,7 @@ class MaterialsController < ApplicationController
   # GET /materials
   # GET /materials.json
   def index
-    @materials = Material.all
+    @materials = Material.paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

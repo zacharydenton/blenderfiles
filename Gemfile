@@ -36,6 +36,7 @@ gem 'ajaxful_rating', :git => 'git://github.com/edgarjs/ajaxful-rating.git', :br
 gem "paperclip", "~> 2.4.5"
 gem 'mechanize'
 gem 'nokogiri'
+gem 'will_paginate'
 
 group :test do
   # Pretty printed test output

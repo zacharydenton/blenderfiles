@@ -1,14 +1,21 @@
-<div class="fill">
+<div class="content">
+  <div class="page-header">
+    <h1>browsing materials</h1>
+  </div>
+  <ul class="breadcrumb">
+    <li><a href="/">Home</a> <span class="divider">/</span></li>
+    <li class="active">Materials</li>
+  </ul>
   <div class="row">
-    <div class="span12">
-      <h2>browsing materials</h2>
+    <div class="span13">
       <ul class="media-grid">
         <% @materials.each do |material| %>
           <li><%= link_to image_tag(material.image.url(:thumb)), material %></li>
         <% end %>
       </ul>
+      <%= will_paginate @materials, :renderer => BootstrapPaginationHelper::LinkRenderer %>
     </div>
-    <div class="span4">
+    <div class="span3">
       <h2>popular tags</h2>
       <% Material.tag_counts_on(:tags, :limit => 15, :order => "count desc").each do |tag| %>
         <a href="#"><span class="label"><%= tag.name %></span></a>

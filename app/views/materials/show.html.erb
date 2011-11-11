@@ -1,24 +1,48 @@
+<style>
+  .ajaxful-rating-wrapper {
+    padding-top:5px;
+    margin-left: 10px;
+    float: left;
+  }
+</style>
 <div class="content">
   <div class="page-header">
     <h1>
-      <%= @material.title %>
+      <span style="float:left"><%= @material.title %></span>
       <%= ratings_for @material %>
+      <a href="<%= @material.blend.url %>" class="pull-right btn primary">Download</a>
+      <div style="clear:both;"></div>
     </h1>
   </div>
+  <ul class="breadcrumb">
+    <li><a href="/">Home</a> <span class="divider">/</span></li>
+    <li><a href="/materials">Materials</a> <span class="divider">/</span></li>
+    <li class="active"><%= @material.title %></li>
+  </ul>
+
   <div class="row">
-    <div class="span10">
-      <%= image_tag @material.image.url(:medium) %>
-      <p>
-      <%= @material.description.html_safe %>
-      </p>
+    <div class="span8">
+      <div id="material">
+        <div id="single">
+          <div id="single-grid">
+            <div id="single-img">
+              <%= image_tag @material.image.url(:main) %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="span4">
-      <a href="<%= @material.blend.url %>" class="btn large primary">Download</a>
-      <h3>Tags:</h3>
+      <h3>description:</h3>
+      <%= @material.description.html_safe %>
+    </div>
+    <div class="span4">
+      <h3>created on:</h3>
+      <%= time_tag @material.created_at %>
+      <h3>tags:</h3>
       <% @material.tag_list.each do |tag| %>
         <span class="label"><%= tag %></span>
       <% end %>
     </div>
   </div>
 </div>
-
