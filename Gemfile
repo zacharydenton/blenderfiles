@@ -37,6 +37,7 @@ gem "paperclip", "~> 2.4.5"
 gem 'mechanize'
 gem 'nokogiri'
 gem 'will_paginate'
+gem "simple-navigation"
 
 group :test do
   # Pretty printed test output
