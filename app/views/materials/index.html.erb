@@ -1,12 +1,18 @@
-
-<% @materials.each_with_index do |material, index| %>
-  <% if (index % 7) == 0 %>
-    <div class="row">
-  <% end %>
-  <div class="span2">
-    <p><%= link_to image_tag(material.image.url(:thumb)), material %></p>
-  </div>
-  <% if (index % 7) == 6 %>
+<div class="fill">
+  <div class="row">
+    <div class="span12">
+      <h2>browsing materials</h2>
+      <ul class="media-grid">
+        <% @materials.each do |material| %>
+          <li><%= link_to image_tag(material.image.url(:thumb)), material %></li>
+        <% end %>
+      </ul>
     </div>
-  <% end %>
-<% end %>
+    <div class="span4">
+      <h2>popular tags</h2>
+      <% Material.tag_counts_on(:tags, :limit => 15, :order => "count desc").each do |tag| %>
+        <a href="#"><span class="label"><%= tag.name %></span></a>
+      <% end %>
+    </div>
+  </div>
+</div>
