@@ -1,10 +1,3 @@
-GIT
-  remote: git://github.com/edgarjs/ajaxful-rating.git
-  revision: 98452cea5145824d528a6fd21024097741fe7b26
-  branch: rails3
-  specs:
-    ajaxful_rating (3.0.0.beta6)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -38,6 +31,7 @@ GEM
       multi_json (~> 1.0)
     acts-as-taggable-on (2.1.1)
       rails
+    ajaxful_rating (2.2.9)
     ansi (1.3.0)
     arel (2.2.1)
     bcrypt-ruby (3.0.1)
@@ -78,6 +72,7 @@ GEM
     mime-types (1.17.2)
     minitest (2.7.0)
     multi_json (1.0.3)
+    mysql2 (0.3.11)
     nokogiri (1.4.4)
     orm_adapter (0.0.5)
     paperclip (2.4.5)
@@ -157,12 +152,13 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 2.1.0)
-  ajaxful_rating!
+  ajaxful_rating
   coffee-rails (~> 3.1.1)
   devise
   jquery-rails
   mechanize
   minitest
+  mysql2
   nokogiri
   paperclip (~> 2.4.5)
   rails (= 3.1.1)

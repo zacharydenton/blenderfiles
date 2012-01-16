@@ -5,3 +5,4 @@ tmp/
 .sass-cache/
 public/system/
 *.swp
+config/database.yml
