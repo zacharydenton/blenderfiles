@@ -32,7 +32,7 @@ gem 'jquery-rails'
 
 gem 'acts-as-taggable-on', '~>2.1.0'
 gem 'devise'
-gem 'ajaxful_rating' #, :git => 'git://github.com/edgarjs/ajaxful-rating.git', :branch => "rails3"
+gem 'ajaxful_rating', '3.0.0.beta6'
 gem "paperclip", "~> 2.4.5"
 gem 'mechanize'
 gem 'nokogiri'
