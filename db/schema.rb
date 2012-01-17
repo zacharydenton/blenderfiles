@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120117021025) do
+ActiveRecord::Schema.define(:version => 20120117024633) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -29,15 +29,23 @@ ActiveRecord::Schema.define(:version => 20120117021025) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
-  create_table "materials", :force => true do |t|
-    t.string   "title"
-    t.text     "description"
+  create_table "images", :force => true do |t|
+    t.integer  "order",              :default => 1
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+  end
+
+  create_table "materials", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "blend_file_name"
     t.string   "blend_content_type"
     t.integer  "blend_file_size"
