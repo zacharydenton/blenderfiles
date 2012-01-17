@@ -20,6 +20,7 @@ for obj in bpy.data.objects:
 
 # render each layer
 bpy.context.scene.render.use_compositing = True
+bpy.context.scene.render.use_nodes = True
 bpy.context.scene.render.use_radiosity = True
 bpy.context.scene.render.use_raytrace = True
 bpy.context.scene.render.use_shadows = True

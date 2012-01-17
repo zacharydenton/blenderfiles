@@ -77,10 +77,6 @@ def get_material(agent, material_url)
   end
   description = elements.join("\n")
 
-  # get image
-  image_url = page.parser.at_css('html body div.bigone div.padd div img#bild')['src']
-  image_url = URI.join($index_url, image_url)
-
   # get blend
   blend_url = page.parser.at_css('html body div.bigone div.padd div div a.download')['href']
   blend_url = URI.join($index_url, blend_url)
@@ -89,12 +85,9 @@ def get_material(agent, material_url)
   blend.close!
   agent.get(blend_url).save_as blend_path
 
+  puts "got material: #{title}"
   # add new Material object
-  material = Material.create(:title => title, :description => description)
-  material.tag_list = tags
-  material.image = open(image_url)
-  material.blend = open(blend_path)
-  material.save
+  material = Material.create_from_blend(blend_path, title, description, tags)
 end
 
 def get_category(agent, category_url)
@@ -104,11 +97,12 @@ def get_category(agent, category_url)
   end
 end
 
-task :getmaterials => :environment do
+task :importmatrep => :environment do
   $index_url = 'http://matrep.parastudios.de/index.php?p=7'
   agent = Mechanize.new
   index = agent.get($index_url)
   index.parser.xpath('/html/body/div[2]/div[2]/div/ul/li/div/a').each do |link|
+    puts "getting category #{link['href']}"
     get_category(agent, link['href'])
   end
 end

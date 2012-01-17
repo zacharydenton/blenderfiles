@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120117024633) do
+ActiveRecord::Schema.define(:version => 20120117062522) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20120117024633) do
     t.string   "blend_content_type"
     t.integer  "blend_file_size"
     t.datetime "blend_updated_at"
+    t.string   "blend_fingerprint"
   end
 
   create_table "rates", :force => true do |t|
