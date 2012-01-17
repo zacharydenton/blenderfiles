@@ -42,6 +42,7 @@ gem 'twitter-bootstrap-rails'
 gem 'twitter_bootstrap_form_for'
 gem 'mysql2'
 gem 'delayed_job_active_record'
+gem 'daemons'
 
 group :test do
   # Pretty printed test output

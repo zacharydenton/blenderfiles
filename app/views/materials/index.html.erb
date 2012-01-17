@@ -13,7 +13,9 @@
     <div class="span13">
       <ul class="media-grid">
         <% @materials.each do |material| %>
-          <li><%= link_to image_tag(material.image.url(:thumb)), material %></li>
+          <% if material.images.count > 0 %>
+            <li><%= link_to image_tag(material.image.url(:thumb)), material %></li>
+          <% end %>
         <% end %>
       </ul>
       <%= will_paginate @materials, :renderer => BootstrapPaginationHelper::LinkRenderer %>
