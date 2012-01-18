@@ -71,7 +71,7 @@ class Material < ActiveRecord::Base
 
     FileUtils.rm temp_path
   end
-  #handle_asynchronously :render_images
+  handle_asynchronously :render_images
   
   def image
     return self.images.order('"order"').first.image
