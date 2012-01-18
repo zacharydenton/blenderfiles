@@ -74,6 +74,6 @@ class Material < ActiveRecord::Base
   handle_asynchronously :render_images
   
   def image
-    return self.images.order('"order"').first.image
+    return self.images.order("`images`.`order` ASC").first.image
   end
 end
