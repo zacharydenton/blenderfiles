@@ -85,9 +85,15 @@ def get_material(agent, material_url)
   blend.close!
   agent.get(blend_url).save_as blend_path
 
-  puts "got material: #{title}"
   # add new Material object
-  material = Material.create_from_blend(blend_path, title, description, tags)
+  material = Material.create(:title => title, :description => description)
+  material.tag_list = tags
+  material.blend = open(blend_path)
+  material.save
+  if material.valid?
+    material.render_images
+    materials << material
+  end
 end
 
 def get_category(agent, category_url)

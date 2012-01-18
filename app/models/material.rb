@@ -6,7 +6,6 @@ class Material < ActiveRecord::Base
   ajaxful_rateable
 
   has_attached_file :blend,
-    :path => ":rails_root/public/materials/:id/:title_slug.blend",
     :url => "/materials/:id/:title_slug.blend" 
   validates_attachment_size :blend, :less_than => 10.megabytes
 
