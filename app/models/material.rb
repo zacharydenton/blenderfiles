@@ -5,8 +5,7 @@ class Material < ActiveRecord::Base
   acts_as_taggable
   ajaxful_rateable
 
-  has_attached_file :blend,
-    :url => "/materials/:id/:title_slug.blend" 
+  has_attached_file :blend
   validates_attachment_size :blend, :less_than => 10.megabytes
 
   has_many :images, :as => :imageable, :dependent => :destroy
