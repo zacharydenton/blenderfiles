@@ -2,7 +2,7 @@ class MaterialsController < ApplicationController
   # GET /materials
   # GET /materials.json
   def index
-    @materials = Material.joins(:images).group("#{Material.table_name}.id").having("COUNT(#{Image.table_name}.id) > 0").paginate(:page => params[:page])
+    @materials = Material.joins(:images).group("#{Material.table_name}.id").having("COUNT(#{Image.table_name}.id) > 0").order("`materials`.`blend_updated_at` DESC").paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
