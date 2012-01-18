@@ -4,6 +4,9 @@ class MaterialsController < ApplicationController
   def index
     @materials = Material.joins(:images).group("#{Material.table_name}.id").having("COUNT(#{Image.table_name}.id) > 0").order("`materials`.`blend_updated_at` DESC").paginate(:page => params[:page])
 
+    #TODO: ability to select materials with a specific tag /materials/:tag
+    #TODO: sort materials by number of downloads, rating, etc.
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @materials }
@@ -14,6 +17,8 @@ class MaterialsController < ApplicationController
   # GET /materials/1.json
   def show
     @material = Material.find(params[:id])
+    #TODO: add a route to download /materials/:id/:title_slug.blend
+    #TODO: improve visual style of material.show page
 
     respond_to do |format|
       format.html # show.html.erb
