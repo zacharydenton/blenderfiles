@@ -92,7 +92,6 @@ def get_material(agent, material_url)
   material.save
   if material.valid?
     material.render_images
-    materials << material
   end
 end
 
