@@ -5,6 +5,8 @@ class Material < ActiveRecord::Base
   acts_as_taggable
   ajaxful_rateable
 
+  validates :title, :presence => true
+
   has_attached_file :blend
   validates_attachment_size :blend, :less_than => 10.megabytes
 

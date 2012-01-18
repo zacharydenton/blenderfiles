@@ -103,12 +103,15 @@ def get_category(agent, category_url)
   end
 end
 
-task :importmatrep => :environment do
-  $index_url = 'http://matrep.parastudios.de/index.php?p=7'
-  agent = Mechanize.new
-  index = agent.get($index_url)
-  index.parser.xpath('/html/body/div[2]/div[2]/div/ul/li/div/a').each do |link|
-    puts "getting category #{link['href']}"
-    get_category(agent, link['href'])
+namespace :blend do
+  desc 'import materials from matrep.parastudios.de'
+  task :importmatrep => :environment do
+    $index_url = 'http://matrep.parastudios.de/index.php?p=7'
+    agent = Mechanize.new
+    index = agent.get($index_url)
+    index.parser.xpath('/html/body/div[2]/div[2]/div/ul/li/div/a').each do |link|
+      puts "getting category #{link['href']}"
+      get_category(agent, link['href'])
+    end
   end
 end

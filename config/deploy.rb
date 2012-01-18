@@ -16,9 +16,6 @@ role :web, "blenderfiles.org"                          # Your HTTP server, Apach
 role :app, "blenderfiles.org"                          # This may be the same as your `Web` server
 role :db,  "blenderfiles.org", :primary => true # This is where Rails migrations will run
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
-
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
   task :start do ; end
@@ -29,12 +26,12 @@ namespace :deploy do
 end
 
 namespace :db do
-    desc <<-DESC
+  desc <<-DESC
       [internal] Updates the symlink for database.yml file to the just deployed release.
-    DESC
-    task :symlink, :except => { :no_release => true } do
-      run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    end
+  DESC
+  task :symlink, :except => { :no_release => true } do
+    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+  end
 
   after "deploy:finalize_update", "db:symlink"
 end
