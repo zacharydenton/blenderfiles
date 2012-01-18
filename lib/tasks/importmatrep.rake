@@ -87,6 +87,7 @@ def get_material(agent, material_url)
 
   # add new Material object
   material = Material.create(:title => title, :description => description)
+  puts "created material: #{material.title}"
   material.tag_list = tags
   material.blend = open(blend_path)
   material.save

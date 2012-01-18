@@ -52,6 +52,7 @@ class Material < ActiveRecord::Base
   def render_images
     render_script = Rails.root.join('lib', 'scripts', 'material_preview.sh')
 
+    puts "rendering #{self.blend.path}"
     temp = Tempfile.new('blend')
     temp_path = temp.path
     temp.close!
@@ -70,7 +71,7 @@ class Material < ActiveRecord::Base
 
     FileUtils.rm temp_path
   end
-  handle_asynchronously :render_images
+  #handle_asynchronously :render_images
   
   def image
     return self.images.order('"order"').first.image
