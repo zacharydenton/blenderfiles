@@ -34,7 +34,7 @@ class Material < ActiveRecord::Base
 
     materials = []
     Dir.glob("#{temp_path}-*.blend").each do |mat_blend|
-      unless title
+      if title.blank?
         title = mat_blend.split('-')[-1].split('.')[0] # grab the *
       end
       material = Material.create(:title => title, :description => description)
