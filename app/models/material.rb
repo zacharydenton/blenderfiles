@@ -18,7 +18,7 @@ class Material < ActiveRecord::Base
 
   validates_uniqueness_of :blend_fingerprint, :message => "already exists in databaase"
 
-  def self.create_from_blend(blend_path, title="", description="", tags=[], delete_original=false)
+  def self.create_from_blend(blend_path, description="", tags=[], delete_original=false)
     extract_script = Rails.root.join('lib', 'scripts', 'extract_materials.sh')
 
     temp = Tempfile.new('blend')
@@ -34,9 +34,7 @@ class Material < ActiveRecord::Base
 
     materials = []
     Dir.glob("#{temp_path}-*.blend").each do |mat_blend|
-      if title.blank?
-        title = mat_blend.split('-')[-1].split('.')[0] # grab the *
-      end
+      title = mat_blend.split('-')[-1].split('.')[0] # grab the *
       material = Material.create(:title => title, :description => description)
       puts "created material: #{material.title}"
       material.tag_list = tags
