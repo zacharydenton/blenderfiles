@@ -1,7 +1,3 @@
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
-require 'rvm/capistrano'
-require 'bundler/capistrano'
-
 set :application, "blenderfiles"
 set :repository,  "git@bitbucket.org:zacharydenton/blenderfiles.git"
 

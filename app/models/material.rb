@@ -7,7 +7,18 @@ class Material < ActiveRecord::Base
 
   validates :title, :presence => true
 
-  has_attached_file :blend
+  has_attached_file :blend,
+    :path => ":rails_root/public/system/:attachment/:id/:style/:normalized_blend_file_name",
+    :url => "/system/:attachment/:id/:style/:normalized_blend_file_name" 
+
+  Paperclip.interpolates :normalized_blend_file_name do |attachment, style|
+    attachment.instance.normalized_blend_file_name
+  end
+
+  def normalized_blend_file_name
+    "#{self.title.parameterize}.blend"
+  end
+
   validates_attachment_size :blend, :less_than => 10.megabytes
 
   has_many :images, :as => :imageable, :dependent => :destroy
@@ -72,7 +83,7 @@ class Material < ActiveRecord::Base
     FileUtils.rm temp_path
   end
   handle_asynchronously :render_images
-  
+
   def image
     return self.images.order("`images`.`order` ASC").first.image
   end
