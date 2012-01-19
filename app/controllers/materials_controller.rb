@@ -1,4 +1,7 @@
 class MaterialsController < ApplicationController
+
+  caches_page :index, :show, :new
+
   # GET /materials
   # GET /materials.json
   def index
