@@ -21,20 +21,23 @@
   </ul>
 
   <div class="row">
-    <div class="span8">
+    <div class="span6">
       <div id="material">
         <div id="single">
           <div id="single-grid">
             <div id="single-img">
-              <%= image_tag @material.image.url(:medium) %>
+              <%= image_tag @material.image.url(:medium), :id => "material-image" %>
             </div>
           </div>
         </div>
       </div>
+      <ul class="media-grid">
+        <% @material.images.each do |image| %>
+          <li><%= link_to_function image_tag(image.image.url(:micro)), "change_image('#material-image', '#{image.image.url(:medium)}')" %></li>
+        <% end %>
+      </ul>
     </div>
     <div class="span4">
-      <h3>description:</h3>
-      <%= @material.description.html_safe %>
     </div>
     <div class="span4">
       <h3>created on:</h3>

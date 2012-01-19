@@ -1,6 +1,11 @@
 class Image < ActiveRecord::Base
   has_attached_file :image, 
-    :styles => { :main => "400", :medium => "256x256>", :thumb => "100x100>" }
+    :styles => {
+      :main => "400",
+      :medium => "256x256>",
+      :thumb => "100x100>",
+      :micro => "32x32>"
+    }
 
   belongs_to :imageable, :polymorphic => true
 

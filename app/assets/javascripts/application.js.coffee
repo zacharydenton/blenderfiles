@@ -17,3 +17,6 @@ $ ->
   )
   $(".open-modal").click ->
     domModal.toggle()
+
+@change_image = (selector, new_image) ->
+  $(selector).attr 'src', new_image
