@@ -28,7 +28,8 @@ end
 class MaterialsController < ApplicationController
 
   if Rails.env.production?
-    caches_page :index, :show, :new
+    caches_page :show, :new
+    caches_action :index, :cache_path => Proc.new { |controller| controller.params }
     cache_sweeper :materials_sweeper
   end
 
