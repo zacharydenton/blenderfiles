@@ -23,7 +23,7 @@
     <div class="span3">
       <h2>popular tags</h2>
       <% Material.tag_counts_on(:tags, :limit => 15, :order => "count desc").each do |tag| %>
-        <a href="#"><span class="label"><%= tag.name %></span></a>
+        <a href="<%= url_for(:controller => 'materials', :action => 'tagged', :tags => [tag.name]) %>"><span class="label"><%= tag.name %></span></a>
       <% end %>
     </div>
   </div>

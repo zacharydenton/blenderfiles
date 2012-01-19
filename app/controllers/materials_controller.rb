@@ -1,6 +1,36 @@
+if Rails.env.production?
+  class MaterialsSweeper < ActionController::Caching::Sweeper
+    observe Material # This sweeper is going to keep an eye on the Material model
+
+    # If our sweeper detects that a Material was created call this
+    def after_create(material)
+      expire_cache_for(material)
+    end
+
+    # If our sweeper detects that a Material was updated call this
+    def after_update(material)
+      expire_cache_for(material)
+    end
+
+    # If our sweeper detects that a Material was deleted call this
+    def after_destroy(material)
+      expire_cache_for(material)
+    end
+
+    private
+    def expire_cache_for(material)
+      expire_page(:controller => 'materials', :action => 'index')
+      expire_page(:controller => 'materials', :action => 'show', :id => material.id)
+    end
+  end
+end
+
 class MaterialsController < ApplicationController
 
-  caches_page :index, :show, :new
+  if Rails.env.production?
+    caches_page :index, :show, :new
+    cache_sweeper :materials_sweeper
+  end
 
   # GET /materials
   # GET /materials.json
@@ -86,6 +116,11 @@ class MaterialsController < ApplicationController
     end
   end
 
+  def tagged
+    @materials = Material.joins(:images).group("#{Material.table_name}.id").having("COUNT(#{Image.table_name}.id) > 0").order("`materials`.`blend_updated_at` DESC").tagged_with(params[:tags]).paginate(:page => params[:page])
+    render :action => 'index'
+  end
+
   # DELETE /materials/1
   # DELETE /materials/1.json
   def destroy
@@ -98,3 +133,4 @@ class MaterialsController < ApplicationController
     end
   end
 end
+

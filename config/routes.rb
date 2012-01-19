@@ -7,6 +7,8 @@ Blenderfiles::Application.routes.draw do
     end
   end
 
+  match ':controller/tagged/*tags' => ':controller#tagged'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
