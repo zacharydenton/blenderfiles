@@ -1,30 +1,32 @@
-<div class="content">
-  <div class="page-header">
-    <h1>
-      <span>browsing materials</span>
-      <a href="<%= url_for :controller => 'application', :action => 'upload' %>" class="pull-right btn">Upload</a>
-    </h1>
-  </div>
-  <ul class="breadcrumb">
-    <li><a href="/">Home</a> <span class="divider">/</span></li>
-    <li class="active">Materials</li>
-  </ul>
-  <div class="row">
-    <div class="span13">
-      <ul class="media-grid">
-        <% @materials.each do |material| %>
-          <% if material.images.count > 0 %>
-            <li><%= link_to image_tag(material.image.url(:thumb)), material %></li>
+<% cache do %>
+  <div class="content">
+    <div class="page-header">
+      <h1>
+        <span>browsing materials</span>
+        <a href="<%= url_for :controller => 'application', :action => 'upload' %>" class="pull-right btn">Upload</a>
+      </h1>
+    </div>
+    <ul class="breadcrumb">
+      <li><a href="/">Home</a> <span class="divider">/</span></li>
+      <li class="active">Materials</li>
+    </ul>
+    <div class="row">
+      <div class="span13">
+        <ul class="media-grid">
+          <% @materials.each do |material| %>
+            <% if material.images.count > 0 %>
+              <li><%= link_to image_tag(material.image.url(:thumb)), material %></li>
+            <% end %>
           <% end %>
+        </ul>
+        <%= will_paginate @materials, :renderer => BootstrapPaginationHelper::LinkRenderer %>
+      </div>
+      <div class="span3">
+        <h2>popular tags</h2>
+        <% Material.tag_counts_on(:tags, :limit => 15, :order => "count desc").each do |tag| %>
+          <a href="<%= url_for(:controller => 'materials', :action => 'tagged', :tags => [tag.name]) %>"><span class="label"><%= tag.name %></span></a>
         <% end %>
-      </ul>
-      <%= will_paginate @materials, :renderer => BootstrapPaginationHelper::LinkRenderer %>
-    </div>
-    <div class="span3">
-      <h2>popular tags</h2>
-      <% Material.tag_counts_on(:tags, :limit => 15, :order => "count desc").each do |tag| %>
-        <a href="<%= url_for(:controller => 'materials', :action => 'tagged', :tags => [tag.name]) %>"><span class="label"><%= tag.name %></span></a>
-      <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
