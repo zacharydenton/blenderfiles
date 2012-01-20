@@ -19,7 +19,7 @@ if Rails.env.production?
 
     private
     def expire_cache_for(material)
-      expire_page(:controller => 'materials', :action => 'index')
+      expire_action(:controller => 'materials', :action => 'index')
       expire_page(:controller => 'materials', :action => 'show', :id => material.id)
     end
   end
@@ -38,7 +38,6 @@ class MaterialsController < ApplicationController
   def index
     @materials = Material.joins(:images).group("#{Material.table_name}.id").having("COUNT(#{Image.table_name}.id) > 0").order("`materials`.`blend_updated_at` DESC").paginate(:page => params[:page])
 
-    #TODO: ability to select materials with a specific tag /materials/:tag
     #TODO: sort materials by number of downloads, rating, etc.
 
     respond_to do |format|
@@ -51,7 +50,6 @@ class MaterialsController < ApplicationController
   # GET /materials/1.json
   def show
     @material = Material.find(params[:id])
-    #TODO: add a route to download /materials/:id/:title_slug.blend
     #TODO: improve visual style of material.show page
 
     respond_to do |format|
