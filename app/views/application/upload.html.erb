@@ -1,0 +1,23 @@
+<div class="content">
+  <div class="page-header">
+    <h1>Upload</h1>
+  </div>
+  <ul class="breadcrumb">
+    <li><a href="/">Home</a> <span class="divider">/</span></li>
+    <li class="active">Upload</li>
+  </ul>
+
+  <div class="span16">
+    <%= form_tag({:action => 'upload'}, {:multipart => true}) do %>
+      <div class="clearfix">
+        <label for="fileInput">Select your .blend:</label>
+        <div class="input">
+          <%= file_field :file, :blend %>
+        </div>
+      </div>
+      <div class="actions">
+        <input type="submit" class="btn primary" value="Upload!">
+      </div>
+    <% end %>
+  </div>
+</div>

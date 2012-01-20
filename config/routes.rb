@@ -9,6 +9,8 @@ Blenderfiles::Application.routes.draw do
 
   match ':controller/tagged/*tags' => ':controller#tagged'
 
+  match '/upload' => 'application#upload'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
